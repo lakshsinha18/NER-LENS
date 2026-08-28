@@ -1,0 +1,6 @@
+export type RiskLevel = 'LOW' | 'MODERATE' | 'HIGH' | 'CRITICAL'
+export interface Zone { id: number; zone_name: string; district: string; state: string; latitude: number; longitude: number; risk_score: number; risk_level: RiskLevel; probability: number; rainfall_24h: number; soil_moisture: number; slope: number; forecast_rainfall: number; updated_at: string; explainability: { reasons: string[]; notice: string } }
+export interface Road { id: number; road_name: string; road_type: string; status: 'OPEN' | 'MONITORING' | 'PARTIALLY_BLOCKED' | 'BLOCKED'; criticality: number; latitude: number; longitude: number; last_updated: string }
+export interface HazardReport { id: number; report_type: string; description: string; latitude: number; longitude: number; image_url?: string; ai_classification: string; ai_confidence: number; human_verification_required: boolean; severity: string; status: string; created_at: string }
+export interface DashboardStats { critical_zones: number; high_risk_zones: number; open_alerts: number; roads_at_risk: number; active_field_reports: number }
+export interface Alert { id: number; severity: string; title: string; message: string; target_area: string; created_at: string; status: string }

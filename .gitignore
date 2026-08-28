@@ -1,0 +1,12 @@
+.env
+.venv/
+outputs/
+**/__pycache__/
+**/*.py[cod]
+*.db
+uploads/
+frontend/node_modules/
+frontend/dist/
+ml/models/*.pkl
+ml/models/metrics.json
+.pytest_cache/

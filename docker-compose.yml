@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-ner_lens}
+      POSTGRES_USER: ${POSTGRES_USER:-ner_lens}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ner_lens_demo}
+    ports: ["5432:5432"]
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/app/gis/init-postgis.sql:/docker-entrypoint-initdb.d/01-init-postgis.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-ner_lens}:${POSTGRES_PASSWORD:-ner_lens_demo}@postgres:5432/${POSTGRES_DB:-ner_lens}
+      JWT_SECRET: ${JWT_SECRET:-replace-before-production}
+      CORS_ORIGINS: http://localhost:5173,http://localhost:8080
+      DEMO_MODE: "true"
+    ports: ["8000:8000"]
+    volumes:
+      - uploads_data:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+  frontend:
+    build: ./frontend
+    ports: ["8080:80"]
+    depends_on: [backend]
+volumes:
+  postgres_data:
+  uploads_data:

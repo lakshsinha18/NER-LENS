@@ -1,0 +1,34 @@
+{
+  "accuracy": 0.821,
+  "precision": 0.806,
+  "recall": 0.853,
+  "f1": 0.829,
+  "roc_auc": 0.921,
+  "samples": 1400,
+  "training_date": "2026-08-28",
+  "model": "Random Forest baseline",
+  "comparison": {
+    "Random Forest baseline": {
+      "accuracy": 0.821,
+      "precision": 0.806,
+      "recall": 0.853,
+      "f1": 0.829,
+      "roc_auc": 0.921
+    }
+  },
+  "data_notice": "Training samples are synthetic demo data, not verified historical records.",
+  "feature_importance": {
+    "rainfall_1h": 0.0356,
+    "rainfall_6h": 0.0314,
+    "rainfall_24h": 0.3046,
+    "rainfall_72h": 0.0315,
+    "rainfall_7d": 0.0327,
+    "soil_moisture": 0.0982,
+    "slope": 0.1599,
+    "elevation": 0.0339,
+    "aspect": 0.0333,
+    "historical_landslide_count": 0.1143,
+    "distance_to_road": 0.046,
+    "land_cover_risk": 0.0787
+  }
+}

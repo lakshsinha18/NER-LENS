@@ -1,0 +1,72 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "notice": "Demo data; not verified disaster records."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_name": "Aizawl Ridge",
+        "risk_level": "CRITICAL",
+        "risk_score": 87,
+        "data_status": "DEMO / SIMULATED DATA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.717,
+          23.727
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_name": "East Khasi Hills",
+        "risk_level": "HIGH",
+        "risk_score": 72,
+        "data_status": "DEMO / SIMULATED DATA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.893,
+          25.578
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_name": "Sikkim Corridor",
+        "risk_level": "HIGH",
+        "risk_score": 65,
+        "data_status": "DEMO / SIMULATED DATA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.606,
+          27.338
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_name": "Papum Pare Hills",
+        "risk_level": "MODERATE",
+        "risk_score": 58,
+        "data_status": "DEMO / SIMULATED DATA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          93.618,
+          27.103
+        ]
+      }
+    }
+  ]
+}
