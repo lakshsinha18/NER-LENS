@@ -1,5 +1,8 @@
 from functools import lru_cache
+import os
 from pathlib import Path
+from typing import Any
+from pydantic import model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -16,6 +19,18 @@ class Settings(BaseSettings):
     model_path: str = "../../ml/models/landslide_model.pkl"
     max_upload_mb: int = 10
     model_config = SettingsConfigDict(env_file=".env", case_sensitive=False)
+
+    @model_validator(mode="before")
+    @classmethod
+    def use_defaults_for_blank_environment_values(cls, values: Any) -> Any:
+        """Treat blank optional environment settings as absent on serverless hosts."""
+        if isinstance(values, dict):
+            values = {key: value for key, value in values.items() if value != ""}
+            if os.getenv("VERCEL") == "1":
+                values.setdefault("database_url", "sqlite:////tmp/ner_lens_demo.db")
+                values.setdefault("upload_dir", "/tmp/uploads")
+            return values
+        return values
 
     @property
     def upload_path(self) -> Path:
